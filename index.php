@@ -30,7 +30,7 @@
                 <option value=""></option>
                 <?php
                 foreach($data['doctors'] as $curdoctor){
-                    echo "<option " . (($GET['doctor']==$curdoctor['file'])?"selected":"") . " value=" . 
+                    echo "<option " . (($_GET['doctor']==$curdoctor['file'])?"selected":"") . " value=" .
                     $curdoctor['file'] . ">" . $curdoctor['name'] . "</option>";
                 }
                 ?>
