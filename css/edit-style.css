@@ -1,0 +1,35 @@
+form {
+    display: table; 
+    padding-top: 20px;
+    }
+    form div {
+    display: table-row;
+    Line-height: 40px;
+    }
+    form div label, form div input {
+    display: table-cell; 
+    font-size: 14pt;
+    }
+    form div label {
+    padding-right: 50px;
+    }
+    form div input {
+    border-radius: 5px;
+    }
+    input [name = 'name'] {
+        width: 100px;
+        }
+        input [name = 'specialization'] {
+        width: 200px;
+        }
+        input [name ='expirience'] {
+        width: 300px;
+        }
+        a {
+        font-size: 14pt;
+        color: blue;
+        text-decoration: none;
+        }
+        a:hover {
+        color: skyblue;
+        }

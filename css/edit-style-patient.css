@@ -1,0 +1,39 @@
+form{
+    display: table;
+    padding-top: 40px;
+}
+form div{
+    display: table-row;
+    line-height: 40px;
+    font-size: 14pt;
+}
+form div label, form div input, form div select{
+    display: table-cell;
+    font-size: 14pt;
+}
+form div label{
+    padding-right: 100px;
+}
+form div input, form div select{
+    border-radius: 5px;
+}
+input[name='patient_name']{
+    width: 300px;
+}
+input[name='patient_gender']{
+    width: 150px;
+}
+input[name='patient_date']{
+    width: 180px;
+}
+a{
+    font-size: 14pt;
+    color:blue;
+    text-decoration: none;
+}
+a:hover{
+    color: skyblue;
+}
+input[type=checkbox]{
+    transform: scale(1.5);
+}

@@ -1,0 +1,12 @@
+tr.male{
+background-color: rgb(134, 177, 255);
+
+}
+
+tr.female{
+    background-color: rgb(247, 121, 198);
+}
+
+tr.male, tr.female{
+    text-align: center;
+}
