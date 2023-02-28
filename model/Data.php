@@ -130,6 +130,7 @@ abstract class Data{
         if ($this->checkRight('patient', 'delete')){
             $this->error="";
             $this->delPatient($patient);
+            return true;
         }else{
             $this->error= "You have no permissions to delete patients";
             return false;
@@ -145,6 +146,7 @@ abstract class Data{
             return true;
         }else{
             $this->error = "You have no permissions to create patients";
+            return false;
         }
     }
     protected abstract function insPatient(Patient $patient);

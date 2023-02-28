@@ -21,6 +21,7 @@ class User{
     public function setUsername($username)
     {
         $this->username = $username;
+        return $this;
     }
 
     /**
@@ -37,6 +38,7 @@ class User{
     public function setPassword($password)
     {
         $this->password = $password;
+        return $this;
     }
 
     public function checkPassword ($password){
@@ -64,6 +66,7 @@ class User{
     public function setRights($rights)
     {
         $this->rights = $rights;
+        return $this;
     }
 
     public function checkRight($object, $right)

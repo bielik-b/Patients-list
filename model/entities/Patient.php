@@ -10,7 +10,7 @@ class Patient{
     private $name;
     private $gender;
     private $date;
-    private $priviege;
+    private $privilege;
     private $doctorId;
 
     /**
@@ -27,6 +27,7 @@ class Patient{
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -43,6 +44,7 @@ class Patient{
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     public function isGenderMale (){
@@ -75,22 +77,29 @@ class Patient{
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getPriviege()
+    public function getPrivilege()
     {
-        return $this->priviege;
+        return $this->privilege;
     }
 
     /**
-     * @param mixed $priviege
+     * @param mixed $privilege
      */
-    public function setPriviege($priviege)
+    public function setPrivilege($privilege)
     {
-        $this->priviege = $priviege;
+        $this->privilege = $privilege;
+        return $this;
+    }
+
+    public function isPrivilege()
+    {
+        return  $this->privilege;
     }
 
     /**
@@ -107,6 +116,7 @@ class Patient{
     public function setDoctorId($doctorId)
     {
         $this->doctorId = $doctorId;
+        return $this;
     }
 
 

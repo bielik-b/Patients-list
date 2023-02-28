@@ -5,8 +5,8 @@ namespace model;
 class FileData extends Data
 {
     const DATA_PATH = __DIR__ . '/../data/';
-    const PATIENT_FILE_TEMPLATE = '/^patient-\\d\\d.txt\\z/';
-    const DOCTOR_FILE_TEMPLATE = '/^doctor-\\d\\d\\z/';
+    const PATIENT_FILE_TEMPLATE = '/^patient-\d\d.txt\z/';
+    const DOCTOR_FILE_TEMPLATE = '/^doctor-\d\d\z/';
 
     protected function getPatients($doctorId)
     {
@@ -27,7 +27,7 @@ class FileData extends Data
         $Patient = (new Patient())
             -> setId($id)
             -> setName($rowArr[0])
-            -> setDob(new \DateTime($rowArr[2]))
+            -> setDate(new \DateTime($rowArr[2]))
             -> setPrivilege($rowArr[3]);
         if($rowArr[1] == 'чол'){
             $Patient -> setMaleGender();
@@ -58,10 +58,10 @@ class FileData extends Data
        fclose($f);
 
        $doctor = (new Doctor())
-           -> setId($id)
-           -> setName($drArr[0])
-           -> setSpecialization($drArr[1])
-           -> setExpirience($drArr[2]);
+           ->setId($id)
+           ->setName($drArr[0])
+           ->setSpecialization($drArr[1])
+           ->setExpirience($drArr[2]);
        return $doctor;
     }
 
@@ -74,9 +74,9 @@ class FileData extends Data
             $rowArr = explode(";", $rowStr);
             if(count($rowArr)==3){
                 $user = (new User())
-                    -> setUsername($rowArr[0])
-                    -> setPassword($rowArr[1])
-                    -> setRights(substr($rowArr[2],0,9));
+                    ->setUsername($rowArr[0])
+                    ->setPassword($rowArr[1])
+                    ->setRights(substr($rowArr[2],0,9));
                 $users[] = $user;
             }
         }
@@ -122,10 +122,10 @@ class FileData extends Data
     }
     protected function setUser (User $user)
     {
-        $users = $this - ›getUsers();
+        $users = $this->getUsers();
         $found = false;
         foreach ($users as $key => $oneUser) {
-            if (Suser - ›getUserName() == $oneUser - ›getUserName()) {
+            if ($user->getUserName() == $oneUser->getUsername()) {
                 $found = true;
                 break;
             }
@@ -133,7 +133,7 @@ class FileData extends Data
                 $users [$key] = $user;
                 $f = fopen(self::DATA_PATH . "users. txt", "w");
                 foreach ($users as $oneUser) {
-                    $drArr = array($oneUser - ›getUserName(), $oneUser - ›getPassword(), $oneUser->getRights() . "\r\n",);
+                    $drArr = array($oneUser->getUsername(), $oneUser->getPassword(), $oneUser->getRights() . "\r\n",);
                     $drStr = implode(";", $drArr);
                     fwrite($f, $drStr);
                 }

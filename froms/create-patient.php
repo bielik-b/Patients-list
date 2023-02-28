@@ -1,39 +1,61 @@
 <?php
-include (__DIR__ . '\..\auth\check-auth.php');
-if(!CheckRight('patient','create')){
-    die('Ви не маєте права на виконання цієї операції !');
-}
+    include (__DIR__ . '\..\auth\check-auth.php');
 
-if($_POST){
-$nameTpl = '/^patient-\d\d.txt\z/';
-$path  = __DIR__  . "/../data/" . $_GET['doctor'];
-$conts = scandir($path); 
+    if($_POST){
+        require_once '../model/autorun.php';
+        $myModel = Model\Data::makeModel(Model\Data::FILE);
+        $myModel->setCurrentUser($_SESSION['user']);
 
-$i = 0;
-foreach($conts as $node){
-    if(preg_match($nameTpl,$node)){
-            $last_file = $node;
-        }   
+        $patient = (new \Model\Patient())
+            ->setDoctorId($_GET['doctor'])
+            ->setName($_POST['name'])
+            ->setDate(new DateTime($_POST['date']))
+            ->setPrivilege($_POST['privilege'])
+            -setFemaleGender();
+        if($_POST['gender']=='чол'){
+            $patient->setMaleGender();
+        }
+        if(!$myModel->addPatient($patient)){
+            die($myModel->getError());
+        }else {
+            header('Location: ../index.php?doctor=' . $_GET['doctor']);
+        }
     }
 
-    $file_index = (String)(((int)substr($last_file, -6, 2)) + 1);
-    if(strlen($file_index) == 1){
-        $file_index = "0" . $file_index;
-    }
-
-    $newFileName = "patient-" . $file_index . ".txt";
-
-    $f = fopen("../data/" . $_GET['doctor'] . "/" . $newFileName, "w");
-    $privilege = 0;
-    if($_POST['patient_privilege'] == 1){
-        $privilege = 1;
-    }
-    $grArr = array($_POST['patient_name'], $_POST['patient_gender'], $_POST['patient_date'], $privilege);
-    $grStr = implode(";", $grArr);
-    fwrite($f, $grStr);
-    fclose($f);
-    header('Location: ../index.php?doctor=' . $_GET['doctor']);
-}
+//if(!CheckRight('patient','create')){
+//    die('Ви не маєте права на виконання цієї операції !');
+//}
+//
+//if($_POST){
+//$nameTpl = '/^patient-\d\d.txt\z/';
+//$path  = __DIR__  . "/../data/" . $_GET['doctor'];
+//$conts = scandir($path);
+//
+//$i = 0;
+//foreach($conts as $node){
+//    if(preg_match($nameTpl,$node)){
+//            $last_file = $node;
+//        }
+//    }
+//
+//    $file_index = (String)(((int)substr($last_file, -6, 2)) + 1);
+//    if(strlen($file_index) == 1){
+//        $file_index = "0" . $file_index;
+//    }
+//
+//    $newFileName = "patient-" . $file_index . ".txt";
+//
+//    $f = fopen("../data/" . $_GET['doctor'] . "/" . $newFileName, "w");
+//    $privilege = 0;
+//    if($_POST['patient_privilege'] == 1){
+//        $privilege = 1;
+//    }
+//    $grArr = array($_POST['patient_name'], $_POST['patient_gender'], $_POST['patient_date'], $privilege);
+//    $grStr = implode(";", $grArr);
+//    fwrite($f, $grStr);
+//    fclose($f);
+//    header('Location: ../index.php?doctor=' . $_GET['doctor']);
+//}
 ?>
 <!DOCTYPE html>
 <html>
