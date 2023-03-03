@@ -1,4 +1,4 @@
-<?php 
+<?php
     include (__DIR__ . '\..\auth\check-auth.php');
 
     if($_POST){
@@ -23,27 +23,7 @@
         }
     }
 
-    $patient = $myModel->readPatient($_GET['doctor'], $_GET['file']);
-//    if(!CheckRight('patient','edit')){
-//        die('Ви не маєте права на виконання цієї операції !');
-//    }
-//
-//    if($_POST){
-//        $f = fopen("../data/" . $_GET['doctor']. "/" . $_GET['file'], "w");
-//        $privilege = 0;
-//        if($_POST['patient_privilege'] == 1){
-//            $privilege = 1;
-//        }
-//        $grArr = array($_POST['patient_name'], $_POST['patient_gender'], $_POST['patient_date'], $privilege);
-//        $grStr = implode(";", $grArr);
-//        fwrite($f, $grStr);
-//        fclose($f);
-//        header('Location: ../index.php?doctor=' . $_GET['doctor']);
-//    }
-//
-//    $path = __DIR__ . "/../data/" . $_GET['doctor'];
-//    $node = $_GET['file'];
-//    $patient = require __DIR__ . '/../data/declare-patient.php';
+    $patient = $myModel -> readPatient($_GET['doctor'], $_GET['file']);
 ?>
 <!DOCTYPE html>
 <html>

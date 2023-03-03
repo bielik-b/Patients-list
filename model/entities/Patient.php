@@ -59,7 +59,7 @@ class Patient{
         return $this->gender = SELF::MALE;
     }
 
-    public function setFemaleGender (){
+    public function setFemaleGender(){
         return $this->gender = SELF::FEMALE;
     }
 

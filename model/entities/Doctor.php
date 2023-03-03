@@ -2,11 +2,12 @@
 
 namespace Model;
 
-    class Doctor{
+    class Doctor {
         private $id;
         private $name;
         private $specialization;
         private $expirience;
+
 
         /**
          * @return mixed
@@ -54,7 +55,7 @@ namespace Model;
          */
         public function setName($name)
         {
-            return $this->name = $name;
+          return $this->name = $name;
         }
 
         /**
@@ -62,7 +63,7 @@ namespace Model;
          */
         public function setSpecialization($specialization)
         {
-            return $this->specialization = $specialization;
+          return $this->specialization = $specialization;
         }
 
         /**
@@ -70,6 +71,7 @@ namespace Model;
          */
         public function setExpirience($expirience)
         {
-            return $this->expirience = $expirience;
+          return $this->expirience = $expirience;
         }
+
 }

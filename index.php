@@ -33,7 +33,7 @@
                 <option value=""></option>
                 <?php
                 foreach($data['doctors'] as $curdoctor){
-                    echo "<option"  . (($curdoctor->getId() == $_GET['doctor'])?"selected":"") . "value='"
+                    echo "<option "  . (($curdoctor->getId() == $_GET['doctor'])?"selected":"") . " value='"
                      . $curdoctor->getId() . "''>" . $curdoctor->getName() . "</option>";
                 }
                 ?>
@@ -63,6 +63,7 @@
         <?php endif; ?>
     </header>
     <?php if($myModel->checkRight('patient', 'view')): ?>
+        <?php $data['patients'] = $myModel->readPatients($_GET['doctor']); ?>
     <section>
         <?php if($_GET['doctor']): ?>
         <div class="control">
@@ -70,6 +71,7 @@
             <a  href="froms\create-patient.php?doctor=<?php echo $_GET['doctor']; ?>">Додати пацієнта</a>
             <?php endif; ?>
         </div>
+        <?php if ($data['patients']) : ?>
        <form name='patients-filter' method='post'>
             Фільтрування за прізвищем <input type="text" name="patient_name_filter" value=
             '<?php echo $_POST['patient_name_filter']; ?>'>
@@ -103,8 +105,7 @@
                         <td><?php echo ($key + 1); ?></td>
                         <td><?php echo $patient->getName() ?></td>
                         <td><?php echo $patient->isGenderMale()?'чол':'жін'; ?></td>
-                        <td><?php $date_of_birth = new Datetime($patient['date']);
-                                    echo date_format($patient->getDate(), 'Y');
+                        <td><?php echo date_format($patient->getDate(), 'Y');
                                 ?></td>
                         <td> 
                         <?php if($myModel->checkRight('patient', 'edit')): ?>
@@ -119,6 +120,7 @@
                     </tr>
                     <?php endif; ?>
                 <?php endforeach;  ?>
+                <?php endif; ?>
             </tbody>
         </table>
         <?php endif; ?>

@@ -1,6 +1,6 @@
 <?php
 
-namespace model;
+namespace Model;
 
 class FileData extends Data
 {
@@ -57,11 +57,12 @@ class FileData extends Data
        $drArr = explode(";", $drStr);
        fclose($f);
 
-       $doctor = (new Doctor())
-           ->setId($id)
-           ->setName($drArr[0])
-           ->setSpecialization($drArr[1])
-           ->setExpirience($drArr[2]);
+       $doctor = (new Doctor());
+       $doctor->setId($id);
+       $doctor->setName($drArr[0]);
+       $doctor->setSpecialization($drArr[1]);
+       $doctor->setExpirience($drArr[2]);
+
        return $doctor;
     }
 
@@ -131,7 +132,7 @@ class FileData extends Data
             }
             if ($found) {
                 $users [$key] = $user;
-                $f = fopen(self::DATA_PATH . "users. txt", "w");
+                $f = fopen(self::DATA_PATH . "users.txt", "w");
                 foreach ($users as $oneUser) {
                     $drArr = array($oneUser->getUsername(), $oneUser->getPassword(), $oneUser->getRights() . "\r\n",);
                     $drStr = implode(";", $drArr);
