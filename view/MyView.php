@@ -127,7 +127,7 @@ class MyView extends DoctorListView
                 <?php if ($this->checkRight('user', 'admin')) : ?>
                     <a href="admin/index.php">Адміністрування</a>
                 <?php endif; ?>
-                <a href="auth/logout.php">Logout</a>
+                <a href="auth/logout.php">Вихід</a>
             </div>
             <?php
             if ($this->checkRight('doctor', 'view')) {
