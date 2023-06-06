@@ -1,0 +1,17 @@
+div.doctor-list, div.user-info, div.doctor-control, div.table-patients {
+	margin-top: 20px;
+}
+section.patients {
+	margin-top: 40px;
+}
+div.user-info a, div.doctor-control a {
+	margin-left: 10px;
+}
+
+div.table-patients table th {
+	text-align: center;
+}
+
+div.add-patient {
+	margin-bottom: 10px;
+}

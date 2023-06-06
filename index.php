@@ -1,11 +1,10 @@
 <?php
 
 use Controller\AuthorListApp;
-use Controller\DoctorListApp;
-use Model\Data;
+use controller\DoctorListApp;
 use View\AuthorListView;
-use view\DoctorListView;
 
+require 'data/config.php';
 require 'controller/autorun.php';
-$controller = new DoctorListApp(Data::FILE, DoctorListView::SIMPLEVIEW);
+$controller = new DoctorListApp(Config::$modelType, Config::$viewType);
 $controller->run();

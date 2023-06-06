@@ -8,6 +8,7 @@ use Model\User;
 
 abstract class DoctorListView {
     const SIMPLEVIEW = 0;
+    const BOOTSTRAPVIEW = 1;
     private $user;
 
     public function setCurrentUser(User $user) {
@@ -28,6 +29,8 @@ abstract class DoctorListView {
     public static function makeView($type) {
         if ($type == self::SIMPLEVIEW) {
             return new MyView();
+        } elseif ($type == self::BOOTSTRAPVIEW){
+            return new BootstrapView();
         }
         return new MyView();
     }
